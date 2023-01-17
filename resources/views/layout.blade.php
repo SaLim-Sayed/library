@@ -13,7 +13,7 @@
 <body>
     <x-navbar></x-navbar>
 
-    <div style="border:2px solid black" class="container my-5 py-5">
+    <div style="border:2px solid black; margin-top:100px" class="container  py-5">
         @yield('content')
     </div>
     <script src="{{ asset('js/jquery-3.6.3.js') }}"></script>
