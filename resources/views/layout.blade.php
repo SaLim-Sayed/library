@@ -11,7 +11,8 @@
 </head>
 
 <body>
-    <div class="container py-5">
+    {{-- <img src="asset('css/book-63c54bf457779.jpg')" alt="no Img"> --}}
+    <div style="border:2px solid black" class="container my-5 py-5">
         @yield('content')
       </div>
     <script src="{{asset('js/jquery-3.6.3.js')}}"></script>
