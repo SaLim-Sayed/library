@@ -1,18 +1,15 @@
 @extends('layout')
 
 @section('title')
-    Register
+    login
 @endsection
 @section('content')
     @include('inc.errors')
 
-    <form class="p-5" method="POST" action="{{ route('auth.handleRegister') }}" enctype="multipart/form-data">
+    <form class="p-5" method="POST" action="{{ route('auth.handleLogin') }}" enctype="multipart/form-data">
         @csrf
-        <h2 class="title">Register</h2>
-        <div class="form-group my-2">
+        <h2 class="title">login</h2>
 
-            <input type="text" name="name" class="form-control" value="{{ old('name') }}" placeholder="name">
-        </div>
         <div class="form-group my-2">
 
             <input type="email" name="email" class="form-control" value="{{ old('email') }}" placeholder="email">
@@ -23,6 +20,6 @@
         </div>
 
 
-        <button type="submit" class="btn btn-primary mb-2">Sign Up</button>
+        <button type="submit" class="btn btn-primary mb-2">Login</button>
     </form>
 @endsection

@@ -66,4 +66,11 @@ Route::get('/categories/delete/{id}',[CategoryController::class,'delete'])->name
 
 #user registration
 Route::get('/register',[AuthController::class,'register'])->name('auth.register');
-Route::post('/handle-register',[AuthController::class,'handleRegister'])->name('auth.handle-register');
+Route::post('/handle-register',[AuthController::class,'handleRegister'])->name('auth.handleRegister');
+
+#user login
+Route::get('/login',[AuthController::class,'login'])->name('auth.login');
+Route::post('/handle-login',[AuthController::class,'handlelogin'])->name('auth.handleLogin');
+
+#user logout
+Route::get('/logout',[AuthController::class,'logout'])->name('auth.logout');
