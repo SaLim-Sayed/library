@@ -13,8 +13,14 @@
                 <div class="card-body">
                     
                         <h3 class="card-title">{{ ucwords($category->name) }}</h3>
-                    
-
+                    <hr>
+                        <h3 class="card-title">Books:</h3>
+                        <ul>
+                            
+                            @foreach ($category->books as $book)
+                            <li>{{$book->title}}</li>
+                            @endforeach
+                        </ul>
                 </div>
             </div>
       
