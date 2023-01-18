@@ -15,12 +15,12 @@
                         <h3 class="card-title">{{ ucwords($book->title) }}</h3>
 
                         <p class="card-text">{{ ucwords($book->desc) }}</p>
-<hr>
+                        <hr>
                         <h3 class="card-title">Categories:</h3>
                         <ul>
-                            
+
                             @foreach ($book->categories as $category)
-                            <li>{{$category->name}}</li>
+                                <li>{{ $category->name }}</li>
                             @endforeach
                         </ul>
                     </div>
@@ -43,9 +43,13 @@
                 <a class="card-link" href="{{ route('books.edit', $book->id) }}">
                     <button type="submit" class="btn btn-success">Edit Book</button>
                 </a>
-                <a class="card-link" href="{{ route('books.delete', $book->id) }}">
-                    <button type="submit" class="btn btn-danger">Delete Book</button>
-                </a>
+                @auth
+                    @if (Auth::user()->is_admin == 1)
+                        <a class="card-link" href="{{ route('books.delete', $book->id) }}">
+                            <button type="submit" class="btn btn-danger">Delete Book</button>
+                        </a>
+                    @endif
+                @endauth
 
             </div>
         </div>

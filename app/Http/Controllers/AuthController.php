@@ -20,11 +20,15 @@ class AuthController extends Controller
             'name' => 'required|string|max:100',
             'email' => 'required|email|max:100',
             'password' => 'required|string|max:50|min:5',
+            // 'is_admin'=>'accepted'
+
         ]);
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            // 'is_admin' =>$request->is_admin,
+
         ]);
         //login
         Auth::login($user);
@@ -52,6 +56,6 @@ class AuthController extends Controller
 
     public function logout(){
         Auth::logout();
-        return back();
+        return redirect(route('auth.login'));
     }
 }
