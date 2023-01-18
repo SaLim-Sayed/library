@@ -32,4 +32,6 @@
         <hr>
         <p>{{ ucwords('you already have an account ') }}<a href="{{ route('auth.login') }}">login</a></a></p>
     </form>
+    <a class="btn btn-success" href="{{route('auth.github.redirect') }} ">Sign Up With Github</a>
+
 @endsection

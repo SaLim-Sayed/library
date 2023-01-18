@@ -25,4 +25,5 @@
         <hr>
         <p>Create New Nser <a href="{{ route('auth.register') }}">Sign Up</a></p>
     </form>
+    <a class="btn btn-success" href="{{route('auth.github.redirect') }} ">Sign Up With Github</a>
 @endsection
