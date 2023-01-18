@@ -14,20 +14,20 @@
             <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('auth.register') }}">Register</a>
+                        <a class="nav-link btn btn-outline-success mx-2" href="{{ route('auth.register') }}">Register</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('auth.login') }}">Login</a>
+                        <a class="nav-link btn btn-outline-primary mx-2" href="{{ route('auth.login') }}">Login</a>
                     </li>
                 @endguest
                 @auth
 
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link disabled ">{{ Auth::user()->name }}</a>
+                        <a href="#" class="nav-link disabled btn btn-outline-info mx-3">{{ Auth::user()->name }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('auth.logout') }}">Logout</a>
+                        <a class="nav-link btn btn-outline-danger" href="{{ route('auth.logout') }}">Logout</a>
                     </li>
                 @endauth
             </ul>

@@ -10,10 +10,10 @@
     @yield('styles')
 </head>
 
-<body>
+<body class=" bg-secondary">
     <x-navbar></x-navbar>
 
-    <div style="border:2px solid black; margin-top:100px" class="container  py-5">
+    <div style=" margin-top:70px" class="container card py-2">
         @yield('content')
     </div>
     <script src="{{ asset('js/jquery-3.6.3.js') }}"></script>

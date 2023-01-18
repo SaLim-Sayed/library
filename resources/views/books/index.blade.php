@@ -5,10 +5,22 @@
 @endsection
 
 @section('content')
+    @auth
+        <div class="card m-2 p-2">
+            <h1>Notes:</h1>
+            <ul>
+                @foreach (Auth::user()->notes as $note)
+                    <li>{{ ucwords($note->content) }} </li>
+                @endforeach
+            </ul>
+            <a href="{{ route('notes.create') }} " class="btn btn-info">Add new note</a>
+        </div>
+
+
+    @endauth
     <h1>All Books</h1>
     @auth
-        <button type="submit" class=" btn btn-primary mb-2"><a class="text-light"
-                href="{{ route('books.create') }}">Creete</a></button>
+        <a class=" btn btn-primary mb-2" href="{{ route('books.create') }}">Creete</a>
     @endauth
     @foreach ($books as $book)
         <hr>
@@ -37,17 +49,11 @@
             </div>
             <div class="card-body">
 
-                <a class="card-link" href="{{ route('books.show', $book->id) }}">
-                    <button type="submit" class="btn btn-primary">Show Book</button>
-                </a>
-                <a class="card-link" href="{{ route('books.edit', $book->id) }}">
-                    <button type="submit" class="btn btn-success">Edit Book</button>
-                </a>
+                <a class="btn btn-primary" href="{{ route('books.show', $book->id) }}"> Show Book</a>
+                <a class="  btn btn-success" href="{{ route('books.edit', $book->id) }}">Edit Book</a>
                 @auth
                     @if (Auth::user()->is_admin == 1)
-                        <a class="card-link" href="{{ route('books.delete', $book->id) }}">
-                            <button type="submit" class="btn btn-danger">Delete Book</button>
-                        </a>
+                        <a class="btn btn-danger" href="{{ route('books.delete', $book->id) }}"> Delete Book</a>
                     @endif
                 @endauth
             </div>

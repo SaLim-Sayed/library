@@ -7,7 +7,7 @@
 @section('content')
     @include('inc.errors')
 
-    <form method="POST" action="{{ route('books.store') }}" enctype="multipart/form-data">
+    <form class="card p-3" method="POST" action="{{ route('books.store') }}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
 
@@ -22,6 +22,16 @@
 
             <input type="file" name="img" class="form-control-file">
         </div>
-        <button type="submit" class="btn btn-primary mb-2">Create</button>
+        <h3>Select Categories:</h3>
+        @foreach ($categories as $category)
+            <div class="form-check mx-4 ">
+                <input class="form-check-input" name="category_ids[]" value="{{ $category->id }} " type="checkbox" id="{{ $category->id }}">
+                <label class="form-check-label " for="{{ $category->id }}">
+                    -{{ $category->name }}
+                </label>
+            </div>
+        @endforeach
+        <br>
+        <button type="submit" class="btn btn-primary m-2">Create</button>
     </form>
 @endsection

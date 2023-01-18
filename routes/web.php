@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\NoteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,9 +46,14 @@ Route::middleware('isLogin')->group(function () {
 #user logout
     Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
+    #notes: create
+    Route::get('/notes/create', [NoteController::class, 'create'])->name('notes.create');
+
+    Route::post('/notes/store', [NoteController::class, 'store'])->name('notes.store');
+
 });
 
-Route::middleware('isLoginUser')->group(function () {
+Route::middleware('isLoginAdmin')->group(function () {
 # Book:Delete
     Route::get('/books/delete/{id}', [BookController::class, 'delete'])->name('books.delete');
 
@@ -75,3 +81,4 @@ Route::middleware('isGuest')->group(function () {
     Route::post('/handle-login', [AuthController::class, 'handlelogin'])->name('auth.handleLogin');
 
 });
+
