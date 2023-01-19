@@ -27,13 +27,16 @@
 
 
         <div class="card" style="width: 25rem;">
+            
+               <a class="btn btn-secondary" href="{{ route('books.show', $book->id) }}">
+                    {{ ucwords($book->title) }}
+                </a>
+           
+            
             <div class="row row-cols-1 row-cols-md-2">
                 <div class="col mb-4">
                     <div class="card-body">
-                        <h3 class="card-title"> <a class="card-link" href="{{ route('books.show', $book->id) }}">
-                                {{ ucwords($book->title) }}
-                            </a>
-                        </h3>
+
                         <p class="card-text">{{ ucwords($book->desc) }}</p>
                     </div>
                 </div>

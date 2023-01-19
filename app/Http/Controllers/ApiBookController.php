@@ -3,44 +3,37 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
-use App\Models\Category;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Request;
 
-class BookController extends Controller
+class ApiBookController extends Controller
 {
     public function index()
     {
-        $books = Book::orderBy('id', 'DESC')->paginate(3);
-        // $books=Book::select('title','desc')->get();
-        // $books=Book::where('id','>=',2)->get();
-        // $books=Book::select('title','desc')->where('id','>=',2)->get();
-        // $books=Book::select('title','desc')->where('id','>=',2)->orderBy('id','DESC')->get();
-        // dd($books);
-        return view('books.index', compact('books'));
+        $books = Book::select('id', 'title', 'desc', 'img')->get();
+        return response()->json($books);
     }
-
     public function show($id)
     {
         $book = Book::findOrFail($id);
-        return view('books.show', compact('book'));
+        return response()->json($book);
     }
 
-    public function create()
-    {
-        $categories = Category::select('id', 'name')->get();
-        return view('books.create', compact('categories'));
-    }
     public function store(Request $request)
     {
 
         #validation
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'title' => ['required', 'string', 'max:255'],
             'desc' => 'required|string',
             'img' => ['required', 'image', 'mimes:jpg,png'],
             'category_ids' => 'required',
             'category_ids.*' => 'exists:categories,id',
         ]);
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            return response()->json($errors);
+        }
 
         //move image to public
         $img = $request->file('img');
@@ -54,23 +47,24 @@ class BookController extends Controller
             'img' => $name,
         ]);
         $book->categories()->sync($request->category_ids);
-        return redirect(route('books.index'));
-    }
-
-    public function edit($id)
-    {
-        $book = Book::findOrFail($id);
-        return view('books.edit', compact('book'));
+        $success = "book created successfully";
+        return response()->json($book);
     }
 
     public function update(Request $request, $id)
     {
         #validation
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'title' => ['required', 'string', 'max:255'],
             'desc' => 'required|string',
-            'img' => ['nullable', 'image', 'mimes:jpg,png'],
+            'img' => ['required', 'image', 'mimes:jpg,png'],
+            'category_ids' => 'required',
+            'category_ids.*' => 'exists:categories,id',
         ]);
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            return response()->json($errors);
+        }
 
         $book = Book::findOrFail($id);
         $name = $book->img;
@@ -90,8 +84,8 @@ class BookController extends Controller
             'desc' => $request->desc,
             'img' => $name,
         ]);
-        // Book::create($request->all());
-        return redirect(route('books.show', $id));
+        $book->categories()->sync($request->category_ids);
+        return response()->json($book);
     }
 
     public function delete($id)
@@ -101,6 +95,8 @@ class BookController extends Controller
             unlink(public_path('uploads/books/') . $book->img);
         }
         $book->delete();
-        return  redirect(route('books.index'));
+        $success = "book deleted successfully";
+        return response()->json($success);
     }
+
 }
