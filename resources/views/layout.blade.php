@@ -10,7 +10,7 @@
     @yield('styles')
 </head>
 
-<body class=" bg-secondary">
+<body  style="background-color: #0f3047d1;">
     <x-navbar></x-navbar>
 
     <div style=" margin-top:70px" class="container card py-2">

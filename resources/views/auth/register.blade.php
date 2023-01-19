@@ -22,16 +22,29 @@
             <input type="password" name="password" class="form-control" value="{{ old('password') }}"
                 placeholder="password">
         </div>
-       {{--  <div class="form-group my-2">
+        {{--  <div class="form-group my-2">
             <label for="">Admin</label>
             <input type="checkbox" name="is_admin" value="0" >
         </div> --}}
 
+        <div class="card-body">
+            <button type="submit" class="btn btn-primary mb-2">Sign Up</button> OR
+            <a class="btn btn-outline-success" href="{{ route('auth.github.redirect') }} ">Sign Up With Github</a>
 
-        <button type="submit" class="btn btn-primary mb-2">Sign Up</button>
-        <hr>
-        <p>{{ ucwords('you already have an account ') }}<a href="{{ route('auth.login') }}">login</a></a></p>
+            <br>
+            <span class="" style="padding-left:70%">
+
+                <a class="btn btn-outline-danger "
+                    href="{{ route('auth.login') }}">{{ ucwords('you already have an account | login') }}</a>
+
+
+            </span>
+        </div>
+
     </form>
+    {{-- <button type="submit" class="btn btn-primary mb-2">Sign Up</button>
+    <hr>
+    <p>{{ ucwords('you already have an account ') }}<a href="{{ route('auth.login') }}">login</a></a></p>
     <a class="btn btn-success" href="{{route('auth.github.redirect') }} ">Sign Up With Github</a>
-
+ --}}
 @endsection

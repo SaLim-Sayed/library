@@ -1,6 +1,6 @@
-<nav class="navbar  fixed-top navbar-expand-lg navbar-light bg-light">
+<nav class="navbar  fixed-top navbar-expand-lg navbar-light "  style="background-color: #e3f2fd;">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Library >></a>
+        <a class="navbar-brand" href="{{route('auth.welcome')}}">Library >></a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">

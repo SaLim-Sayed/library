@@ -6,7 +6,7 @@
 @section('content')
     @include('inc.errors')
 
-    <form class="px-5" method="POST" action="{{ route('auth.handleLogin') }}" enctype="multipart/form-data">
+    <form class="px-5 " method="POST" action="{{ route('auth.handleLogin') }}" enctype="multipart/form-data">
         @csrf
 
         <h2 class="title">Login</h2>
@@ -20,10 +20,13 @@
                 placeholder="password">
         </div>
 
-
-        <button type="submit" class="btn btn-primary mb-2">Login</button>
-        <hr>
-        <p>Create New Nser <a href="{{ route('auth.register') }}">Sign Up</a></p>
+        <div class="card-body">
+            <button type="submit" class="btn btn-primary mb-2">Login</button> OR
+            <a class="btn btn-outline-success" href="{{ route('auth.github.redirect') }} ">Sign Up With Github</a>
+            <br>
+            <span class="" style="padding-left:70% ">
+                <a class="btn btn-outline-danger " href="{{ route('auth.register') }}">Create New User | Sign Up</a>
+            </span>
+        </div>
     </form>
-    <a class="btn btn-success" href="{{route('auth.github.redirect') }} ">Sign Up With Github</a>
 @endsection

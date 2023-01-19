@@ -14,6 +14,10 @@ class AuthController extends Controller
     {
         return view('auth.register');
     }
+    public function welcome()
+    {
+        return view('auth.welcome');
+    }
     public function handleRegister(Request $request)
     {
 
@@ -34,7 +38,7 @@ class AuthController extends Controller
         //login
         Auth::login($user);
 
-        return redirect(route('books.index'));
+        return redirect(route('auth.welcome'));
     }
     public function login()
     {
@@ -52,7 +56,7 @@ class AuthController extends Controller
         if (!$is_login) {
             return back();
         }
-        return redirect(route('books.index'));
+        return redirect(route('auth.welcome'));
     }
 
     public function logout()
@@ -85,6 +89,6 @@ class AuthController extends Controller
         } else {
             Auth::login($db_user);
         }
-        return redirect(route('books.index'));
+        return redirect(route('auth.welcome'));
     }
 }

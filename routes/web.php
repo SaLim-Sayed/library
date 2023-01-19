@@ -18,11 +18,21 @@ use Illuminate\Support\Facades\Route;
  */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.welcome');
 });
 
 // Route::get('/books', 'App\Http\Controllers\BookController@index');
 Route::middleware('isLogin')->group(function () {
+
+    #Books Read
+    Route::get('books', [BookController::class, 'index'])->name('books.index');
+
+    Route::get('/books/show/{id}', [BookController::class, 'show'])->name('books.show');
+
+#Category Read
+    Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
+
+    Route::get('/categories/show/{id}', [CategoryController::class, 'show'])->name('categories.show');
 
 #Books: create
     Route::get('/books/create', [BookController::class, 'create'])->name('books.create');
@@ -61,17 +71,9 @@ Route::middleware('isLoginAdmin')->group(function () {
     Route::get('/categories/delete/{id}', [CategoryController::class, 'delete'])->name('categories.delete');
 
 });
-#Books Read
-Route::get('books', [BookController::class, 'index'])->name('books.index');
-
-Route::get('/books/show/{id}', [BookController::class, 'show'])->name('books.show');
-
-#Category Read
-Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
-
-Route::get('/categories/show/{id}', [CategoryController::class, 'show'])->name('categories.show');
 
 Route::middleware('isGuest')->group(function () {
+
 #user registration
     Route::get('/register', [AuthController::class, 'register'])->name('auth.register');
     Route::post('/handle-register', [AuthController::class, 'handleRegister'])->name('auth.handleRegister');
@@ -80,8 +82,10 @@ Route::middleware('isGuest')->group(function () {
     Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
     Route::post('/handle-login', [AuthController::class, 'handlelogin'])->name('auth.handleLogin');
 
+    //GITHUB
+    Route::get('login/github', [AuthController::class, 'redirectToProvider'])->name('auth.github.redirect');
+    Route::get('login/github/callback', [AuthController::class, 'handleProviderCallback'])->name('auth.github.callback');
+
 });
 
-
-Route::get('login/github', [AuthController::class,'redirectToProvider'])->name('auth.github.redirect');
-Route::get('login/github/callback', [AuthController::class,'handleProviderCallback'])->name('auth.github.callback');
+Route::get('welcome', [AuthController::class, 'welcome'])->name('auth.welcome');
