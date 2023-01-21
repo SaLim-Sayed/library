@@ -3,7 +3,7 @@
     Show Book
 @endsection
 @section('content')
-    <h3>Book ID: {{ $book->id }}</h3>
+    <h3 style="color: rgb(6, 58, 103) ; font-family:fantasy">Book ID: {{ $book->id }}</h3>
 
     <hr>
     <div class="card m-3">

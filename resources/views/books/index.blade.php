@@ -7,7 +7,7 @@
 @section('content')
     
     @auth
-    <div class="card bg-danger m-2 p-2">
+    <div class="card bg-success m-2 p-2">
         <input type="text" class="container   form-control" placeholder="Search for a Book" style="width: 50rem;" id="keyword">
     </div>
         
