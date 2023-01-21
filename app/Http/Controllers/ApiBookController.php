@@ -15,7 +15,7 @@ class ApiBookController extends Controller
     }
     public function show($id)
     {
-        $book = Book::findOrFail($id);
+        $book = Book::with('categories:id,name')->findOrFail($id);
         return response()->json($book);
     }
 

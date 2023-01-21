@@ -16,7 +16,7 @@
     <div style=" margin-top:70px" class="container card py-2">
         @yield('content')
     </div>
-    <script src="{{ asset('js/jquery-3.6.3.js') }}"></script>
+    <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     @yield('scripts')
 </body>

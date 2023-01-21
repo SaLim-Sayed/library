@@ -26,15 +26,9 @@
 
             <div class="card-body">
 
-                <a class="card-link" href="{{ route('categories.show', $category->id) }}">
-                    <button type="submit" class="btn btn-primary">Show Category</button>
-                </a>
-                <a class="card-link" href="{{ route('categories.edit', $category->id) }}">
-                    <button type="submit" class="btn btn-success">Edit Category</button>
-                </a>
-                <a class="card-link" href="{{ route('categories.delete', $category->id) }}">
-                    <button type="submit" class="btn btn-danger">Delete Category</button>
-                </a>
+                <a class="card-link btn btn-primary" href="{{ route('categories.show', $category->id) }}">Show Category </a>
+                <a class="card-link btn btn-success" href="{{ route('categories.edit', $category->id) }}">Edit Category</a>
+                <a class="card-link btn btn-danger" href="{{ route('categories.delete', $category->id) }}">Delete Category</a>
             </div>
         </div>
     @endforeach

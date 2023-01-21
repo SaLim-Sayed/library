@@ -10,8 +10,9 @@ class BookController extends Controller
 {
     public function index()
     {
-        $books = Book::orderBy('id', 'DESC')->paginate(3);
-        // $books=Book::select('title','desc')->get();
+        // $books = Book::orderBy('id', 'DESC')->paginate(3);
+        // $books=Book::select('id','desc')->get();
+        $books=Book::orderBy('id', 'DESC')->get();
         // $books=Book::where('id','>=',2)->get();
         // $books=Book::select('title','desc')->where('id','>=',2)->get();
         // $books=Book::select('title','desc')->where('id','>=',2)->orderBy('id','DESC')->get();
@@ -19,6 +20,11 @@ class BookController extends Controller
         return view('books.index', compact('books'));
     }
 
+    public function search(Request $request){
+        $keyword = $request->keyword;
+        $books=Book::where('title', 'like', "%$keyword%")->get();
+        return response()->json($books);
+    }
     public function show($id)
     {
         $book = Book::findOrFail($id);

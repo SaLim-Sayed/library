@@ -1,11 +1,22 @@
 @extends('layout')
 
 @section('title')
-   Welcome
+    Welcome
 @endsection
 @section('content')
-   <div class="card">
-    <h5 class=" bg-dark text-light text-center">Welcome in Our Library</h5>
-    <img class="card-img" src="{{asset('uploads/library.png')}}" alt="">
-   </div>
+    <div class="">
+        @auth
+            <h2 style="font-family:serif" class=" bg-dark text-light text-center nav-link btn btn-outline-info">
+                Welcome <span style="font-family:cursive;color:aqua">"{{ Auth::user()->name }}" </span> in Our Library
+
+                <img class="card-img" src="{{ asset('uploads/library.png') }}" alt="">
+            </h2>
+        @endauth
+        @guest
+            <h5 class=" bg-dark text-light text-center nav-link btn btn-outline-info">
+                <a href="{{route('auth.login')}}">Join to Our Library</a>
+                <img class="card-img" src="{{ asset('uploads/library.png') }}" alt="">
+            </h5>
+        @endguest
+    </div>
 @endsection

@@ -1,13 +1,13 @@
-<nav class="navbar  fixed-top navbar-expand-lg navbar-light "  style="background-color: #e3f2fd;">
+<nav class="navbar  fixed-top navbar-expand-lg navbar-light "  style="background-color: #e3f2fd;font-family:cursive">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{{route('auth.welcome')}}">Library >></a>
+        <a class="navbar-brand active btn btn-outline-success"  href="{{route('auth.welcome')}}">Library >></a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('books.index') }}">All Books</a>
+                    <a class="nav-link btn mx-2 btn-outline-success" href="{{ route('books.index') }}">All Books</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('categories.index') }}">All Categories</a>
+                    <a class="nav-link btn btn-outline-success" href="{{ route('categories.index') }}">All Categories</a>
                 </li>
             </ul>
 
