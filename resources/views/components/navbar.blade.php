@@ -17,9 +17,11 @@
                         @lang('site.cats')
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li class="btn btn-success"><a class="dropdown-item btn btn-success" href="{{route('categories.create')}} ">create new categories</a></li>
+                        <li class="card btn bg-success"><a class=" container dropdown-item btn btn-success" href="{{route('categories.index')}} ">All categories</a></li>
+                        <li class="btn btn-primary"><a class="dropdown-item btn " href="{{route('categories.create')}} ">create new categories</a></li>
                         @foreach ($cats as $cat)
                             <li><a class="dropdown-item" href="{{route('categories.show',$cat->id)}} ">{{ $cat->name }}</a></li>
+                            <hr>
                         @endforeach
                     </ul>
                 </div>
